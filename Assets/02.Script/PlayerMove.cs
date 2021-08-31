@@ -10,10 +10,7 @@ public class PlayerMove : MonoBehaviour
     private float sightRange = 0.4f;
     public LayerMask whatIswall;
     public bool bWallInSingRange;
-    public bool isSpawnWall = false;
 
-    public bool bMousePosRange;
-    private Vector2 mousePos;
     private void Start()
     {
         foreach (GameObject item in movePos)
@@ -24,24 +21,6 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        mousePos = Input.mousePosition;
-        if (Input.GetMouseButtonDown(0))
-        {
-            Collider2D hit = Physics2D.OverlapCircle(mousePos, 0.1f,whatIswall);
-            Debug.Log(hit.name);
-            Debug.Log(mousePos);
-            Debug.Log(whatIswall);
-
-            bMousePosRange = hit;
-            if(hit ==null)
-            {
-                return;
-            }
-            if (bMousePosRange)
-            {
-                gameObject.transform.position = hit.transform.position;
-            }
-        }
 
         foreach (GameObject item in movePos)
         {
