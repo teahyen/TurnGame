@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         yield return new WaitForSeconds(1f);
+        GameManager.Instance.turnCount++;
         oneMyTurn = true;
         GameManager.Instance.myTurn = true;
         

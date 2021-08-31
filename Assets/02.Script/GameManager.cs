@@ -39,16 +39,17 @@ public class GameManager : MonoBehaviour
     #endregion
     public bool myTurn = true;
     public Text turnTex;
+    public int turnCount;
 
     private void Update()
     {
         if (myTurn)
         {
-            turnTex.text = "내 턴";
+            turnTex.text = $"내 턴\n{turnCount}턴째";
         }
         else
         {
-            turnTex.text = "상대 턴";
+            turnTex.text = $"상대 턴\n{turnCount}턴째";
         }
     }
 

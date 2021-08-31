@@ -19,6 +19,7 @@ public class GoMovePos : MonoBehaviour
     {
         if (GameManager.Instance.myTurn)
         {
+            GameManager.Instance.turnCount++;
             GameManager.Instance.myTurn = false;
             player.transform.position = gameObject.transform.position;
         }
