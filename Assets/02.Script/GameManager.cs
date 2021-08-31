@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,5 +37,19 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+    public bool myTurn = true;
+    public Text turnTex;
+
+    private void Update()
+    {
+        if (myTurn)
+        {
+            turnTex.text = "내 턴";
+        }
+        else
+        {
+            turnTex.text = "상대 턴";
+        }
+    }
 
 }
