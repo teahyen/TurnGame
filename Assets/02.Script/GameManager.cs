@@ -40,17 +40,25 @@ public class GameManager : MonoBehaviour
     public bool myTurn = true;
     public Text turnTex;
     public int turnCount;
+    public void Start()
+    {
+        turnTex = GameObject.Find("Text").GetComponent<Text>();
+    }
 
     private void Update()
     {
-        if (myTurn)
+        if(turnTex != null)
         {
-            turnTex.text = $"내 턴\n{turnCount}턴째";
+            if (myTurn)
+            {
+                turnTex.text = $"내 턴\n{turnCount}턴째";
+            }
+            else
+            {
+                turnTex.text = $"상대 턴\n{turnCount}턴째";
+            }
         }
-        else
-        {
-            turnTex.text = $"상대 턴\n{turnCount}턴째";
-        }
+
     }
 
 }

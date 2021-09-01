@@ -11,6 +11,11 @@ public class PlayerMove : MonoBehaviour
     public LayerMask whatIswall;
     public bool bWallInSingRange;
 
+    public LayerMask whatIsEnemy;
+    public bool bAtkPlayer;
+    public GameObject Enemy;
+
+
     private void Start()
     {
         foreach (GameObject item in movePos)
@@ -33,6 +38,14 @@ public class PlayerMove : MonoBehaviour
             {
                 item.SetActive(false);
             }
+        }
+
+        //적에게 닿았을 경우
+        bAtkPlayer = Physics2D.OverlapCircle(transform.position, sightRange, whatIsEnemy);
+        if (bAtkPlayer&&!GameManager.Instance.myTurn)
+        {
+            Debug.Log("적 사망");
+            Destroy(Enemy);
         }
 
     }

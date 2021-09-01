@@ -15,6 +15,9 @@ public class EnemyAI : MonoBehaviour
     public LayerMask whatIswall;
     public bool bWallInSingRange;
 
+    public LayerMask whatIsPlayer;
+    public bool bAtkPlayer;
+    public GameObject Player;
     void Update()
     {
         foreach (GameObject item in movePos)
@@ -34,18 +37,31 @@ public class EnemyAI : MonoBehaviour
             oneMyTurn = false;
             StartCoroutine(EnemyTurn());
         }
+        //플레이어를 죽이는 조건
+        bAtkPlayer = Physics2D.OverlapCircle(transform.position, sightRange, whatIsPlayer);
+        if (bAtkPlayer && GameManager.Instance.myTurn)
+        {
+            Debug.Log("적 사망");
+            Destroy(Player);
+        }
     }
     IEnumerator EnemyTurn()
     {
         int Ran = Random.Range(0, mapPos.Count);
-        GameObject jotEH = Instantiate(damagePos, mapPos[Ran].transform);
+        
         EnemyMove();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
+        GameObject jotEH = Instantiate(damagePos, mapPos[Ran].transform);
+        yield return new WaitForSeconds(0.3f);
+        Destroy(jotEH);
+
         GameManager.Instance.turnCount++;
         oneMyTurn = true;
         GameManager.Instance.myTurn = true;
-        Destroy(jotEH);
+
     }
+
+
     void EnemyMove()
     {
         

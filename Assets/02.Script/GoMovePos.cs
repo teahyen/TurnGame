@@ -21,10 +21,9 @@ public class GoMovePos : MonoBehaviour
         if (GameManager.Instance.myTurn)
         {
             GameManager.Instance.turnCount++;
-
             player.transform
                 .DOMove(gameObject.transform.position, 0.5f)
-                .OnComplete( () => GameManager.Instance.myTurn = false );
+                .OnComplete(() => GameManager.Instance.myTurn = false);
             //
             //player.transform.position = gameObject.transform.position;
         }
