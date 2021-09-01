@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 
 public class GoMovePos : MonoBehaviour
@@ -20,8 +21,12 @@ public class GoMovePos : MonoBehaviour
         if (GameManager.Instance.myTurn)
         {
             GameManager.Instance.turnCount++;
-            GameManager.Instance.myTurn = false;
-            player.transform.position = gameObject.transform.position;
+
+            player.transform
+                .DOMove(gameObject.transform.position, 0.5f)
+                .OnComplete( () => GameManager.Instance.myTurn = false );
+            //
+            //player.transform.position = gameObject.transform.position;
         }
 
     }
