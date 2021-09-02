@@ -50,8 +50,9 @@ public class EnemyAI : MonoBehaviour
         int Ran = Random.Range(0, mapPos.Count);
         yield return new WaitForSeconds(0.5f);
         EnemyMove();
-        GameObject jotEH = Instantiate(damagePos, mapPos[Ran].transform);
         yield return new WaitForSeconds(0.7f);
+        GameObject jotEH = Instantiate(damagePos, mapPos[Ran].transform);
+        yield return new WaitForSeconds(0.4f);
         Destroy(jotEH);
 
 

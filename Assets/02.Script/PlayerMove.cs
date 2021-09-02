@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
 {
     public  List<GameObject> movePos = new List<GameObject>();
 
-    private float sightRange = 0.4f;
+    private float sightRange = 0.5f;
     public LayerMask whatIswall;
     public bool bWallInSingRange;
 
@@ -20,7 +20,7 @@ public class PlayerMove : MonoBehaviour
     {
         foreach (GameObject item in movePos)
         {
-            item.SetActive(false);
+            item.SetActive(true);
         }
     }
 
@@ -30,7 +30,7 @@ public class PlayerMove : MonoBehaviour
         foreach (GameObject item in movePos)
         {
             bWallInSingRange = Physics2D.OverlapCircle(item.transform.position, sightRange, whatIswall);
-            if (bWallInSingRange)
+            if ( bWallInSingRange &&GameManager.Instance.myTurn)
             {
                 item.SetActive(true);
             }
@@ -38,6 +38,7 @@ public class PlayerMove : MonoBehaviour
             {
                 item.SetActive(false);
             }
+            
         }
 
         //적에게 닿았을 경우
@@ -45,7 +46,7 @@ public class PlayerMove : MonoBehaviour
         if (bAtkPlayer&&GameManager.Instance.myTurn)
         {
             Debug.Log("적 사망");
-            Destroy(Enemy);
+            Enemy.SetActive(false);
         }
 
     }
