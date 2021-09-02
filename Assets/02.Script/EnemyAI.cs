@@ -39,21 +39,21 @@ public class EnemyAI : MonoBehaviour
         }
         //플레이어를 죽이는 조건
         bAtkPlayer = Physics2D.OverlapCircle(transform.position, sightRange, whatIsPlayer);
-        if (bAtkPlayer && GameManager.Instance.myTurn)
+        if (bAtkPlayer && !GameManager.Instance.myTurn)
         {
             Debug.Log("적 사망");
-            Destroy(Player);
+            //Destroy(Player);
         }
     }
     IEnumerator EnemyTurn()
     {
         int Ran = Random.Range(0, mapPos.Count);
-        
+        yield return new WaitForSeconds(0.5f);
         EnemyMove();
-        yield return new WaitForSeconds(0.7f);
         GameObject jotEH = Instantiate(damagePos, mapPos[Ran].transform);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.7f);
         Destroy(jotEH);
+
 
         GameManager.Instance.turnCount++;
         oneMyTurn = true;
@@ -74,7 +74,7 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            gameObject.transform.DOMove(movePos[ranMove].transform.position, 0.5f);
+            gameObject.transform.DOMove(movePos[ranMove].transform.position, 0.7f);
             //gameObject.transform.position = movePos[ranMove].transform.position;
         }
     }

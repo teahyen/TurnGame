@@ -42,7 +42,7 @@ public class PlayerMove : MonoBehaviour
 
         //적에게 닿았을 경우
         bAtkPlayer = Physics2D.OverlapCircle(transform.position, sightRange, whatIsEnemy);
-        if (bAtkPlayer&&!GameManager.Instance.myTurn)
+        if (bAtkPlayer&&GameManager.Instance.myTurn)
         {
             Debug.Log("적 사망");
             Destroy(Enemy);

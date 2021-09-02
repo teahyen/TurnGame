@@ -8,12 +8,12 @@ using DG.Tweening;
 
 public class GoMovePos : MonoBehaviour
 {
-    Image myImg;
+    //Image myImg;
     GameObject player;
     private void Awake()
     {
         player = GameObject.Find("Player");
-        myImg = gameObject.GetComponent<Image>();
+        //myImg = gameObject.GetComponent<Image>();
     }
 
     public void moving()
@@ -32,13 +32,13 @@ public class GoMovePos : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.myTurn)
-        {
-            myImg.enabled = false;
-        }
-        else
-        {
-            myImg.enabled = true;
-        }
+        //if (!GameManager.Instance.myTurn && myImg !=null)
+        //{
+        //    myImg.enabled = false;
+        //}
+        //else
+        //{
+        //    myImg.enabled = true;
+        //}
     }
 }
