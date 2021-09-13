@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
     private bool oneMyTurn = true;
 
     public GameObject damagePos;
-    public List<GameObject> mapPos = new List<GameObject>();
+    List<GameObject> mapPos = new List<GameObject>();
     //이동 관련 변수들
     public List<GameObject> movePos = new List<GameObject>();
     private float sightRange = 0.4f;
@@ -18,6 +18,15 @@ public class EnemyAI : MonoBehaviour
     public LayerMask whatIsPlayer;
     public bool bAtkPlayer;
     public GameObject Player;
+
+    private void Start()
+    {
+        for (int i = 0; i < 31; i++)
+        {
+            mapPos.Add(GameObject.Find($"Pos1 ({i})"));
+        }
+    }
+
     void Update()
     {
         foreach (GameObject item in movePos)
