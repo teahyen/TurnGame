@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class HideScript : MonoBehaviour
 {
-    public GameObject Enemy;
+    public float sightRange = 3;
+    public LayerMask whatIswall;
+    public bool bWallInSingRange;
+    public SpriteRenderer mySrt;
 
-    public void OnTriggerStay(Collider2D col)
+    private void Start()
     {
-        if (col.gameObject == Enemy)
+        mySrt = gameObject.GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        bWallInSingRange = Physics2D.OverlapBox(gameObject.transform.position, new Vector2(sightRange, sightRange),90f);
+        if (bWallInSingRange)
         {
-            SpriteRenderer spr = col.gameObject.GetComponent<SpriteRenderer>();
-            spr.enabled = false;
+            mySrt.enabled = false;
 
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+
     }
 }
